@@ -13,7 +13,7 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
-  int index = 3; 
+  int index = 5;
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
