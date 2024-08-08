@@ -6,6 +6,8 @@ import 'package:islamic_app/radioScreen.dart';
 import 'package:islamic_app/tasbehScreen.dart';
 
 class Homescreen extends StatefulWidget {
+  static const String RouteName = "HomeScreenRoute";
+
   const Homescreen({super.key});
 
   @override
@@ -13,7 +15,7 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
-  int index = 5;
+  int index = 3;
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
