@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:islamic_app/suraScreen.dart';
+import 'package:islamic_app/model/suraModel.dart';
+import 'package:islamic_app/screens/suraScreen.dart';
 
-class Quranscreen extends StatefulWidget {
-  const Quranscreen({super.key});
-
-  @override
-  State<Quranscreen> createState() => _QuranscreenState();
-}
-
-class _QuranscreenState extends State<Quranscreen> {
+// ignore: must_be_immutable
+class Quranscreen extends StatelessWidget {
   List<Map<String, String>> surasName = [
     {"الفاتحه": "7"},
     {"البقرة": "286"},
@@ -153,11 +147,7 @@ class _QuranscreenState extends State<Quranscreen> {
                   padding: const EdgeInsets.symmetric(vertical: 5.0),
                   child: Text(
                     "عدد الايات",
-                    style: GoogleFonts.elMessiri(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF242424),
-                    ),
+                    style: Theme.of(context).textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -165,10 +155,7 @@ class _QuranscreenState extends State<Quranscreen> {
                   padding: const EdgeInsets.symmetric(vertical: 5.0),
                   child: Text(
                     "اسم السوره",
-                    style: GoogleFonts.elMessiri(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF242424)),
+                    style: Theme.of(context).textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -181,7 +168,10 @@ class _QuranscreenState extends State<Quranscreen> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, SureScreen.RouteName);
+                    Navigator.pushNamed(context, SureScreen.RouteName,
+                        arguments: SuraModel(
+                            SuraName: surasName[index].keys.first,
+                            index: index));
                   },
                   child: Table(
                     border: TableBorder.symmetric(
@@ -197,20 +187,13 @@ class _QuranscreenState extends State<Quranscreen> {
                             padding: const EdgeInsets.symmetric(vertical: 5.0),
                             child: Text(
                               surasName[index].values.first,
-                              style: GoogleFonts.elMessiri(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xFF242424)),
+                              style: Theme.of(context).textTheme.bodyLarge,
                               textAlign: TextAlign.center,
                             ),
                           ),
                           Text(
                             surasName[index].keys.first,
-                            style: GoogleFonts.elMessiri(
-                              fontSize: 25,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xFF242424),
-                            ),
+                            style: Theme.of(context).textTheme.bodyLarge,
                             textAlign: TextAlign.center,
                           ),
                         ],
