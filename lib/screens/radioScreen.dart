@@ -1,5 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:islamic_app/myProviders/myProvider.dart';
 import 'package:islamic_app/myThemeData.dart';
+import 'package:provider/provider.dart';
 
 class Radioscreen extends StatefulWidget {
   const Radioscreen({super.key});
@@ -11,6 +14,8 @@ class Radioscreen extends StatefulWidget {
 class _RadioscreenState extends State<Radioscreen> {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
+
     return Center(
         child: Column(
       children: [
@@ -24,7 +29,7 @@ class _RadioscreenState extends State<Radioscreen> {
           padding:
               EdgeInsets.only(top: MediaQuery.of(context).size.height * .07),
           child: Text(
-            "إذاعة القرآن الكريم",
+            "radioo".tr(),
             style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
@@ -35,19 +40,25 @@ class _RadioscreenState extends State<Radioscreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Icon(
-                Icons.skip_previous,
+                provider.isEnglish ? Icons.skip_previous : Icons.skip_next,
                 size: 40,
-                color: MyThemeData.primaryColor,
+                color: provider.isDark
+                    ? MyThemeData.DarkprimaryColor
+                    : MyThemeData.primaryColor,
               ),
               Icon(
                 Icons.play_arrow,
                 size: 50,
-                color: MyThemeData.primaryColor,
+                color: provider.isDark
+                    ? MyThemeData.DarkprimaryColor
+                    : MyThemeData.primaryColor,
               ),
               Icon(
-                Icons.skip_next,
+                provider.isEnglish ? Icons.skip_next : Icons.skip_previous,
                 size: 40,
-                color: MyThemeData.primaryColor,
+                color: provider.isDark
+                    ? MyThemeData.DarkprimaryColor
+                    : MyThemeData.primaryColor,
               )
             ],
           ),

@@ -1,6 +1,8 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:islamic_app/myProviders/myProvider.dart';
 import 'package:islamic_app/screens/homeScreen.dart';
+import 'package:provider/provider.dart';
 
 class splash extends StatelessWidget {
   static const String RouteName = "SplashRoute";
@@ -8,44 +10,52 @@ class splash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterSplashScreen(
-      duration: Duration(seconds: 2),
-      nextScreen: Homescreen(),
-      backgroundColor: Colors.white,
-      splashScreenBody: Container(
-        color: Color(0xFFFFFFFF),
-        child: Center(
-          child: Column(
-            children: [
-              Spacer(
-                flex: 3,
-              ),
-              Image.asset("assets/images/logo2.png"),
-              Spacer(
-                flex: 2,
-              ),
-              Image.asset(
-                "assets/images/routegold.png",
-                fit: BoxFit.fitWidth,
-                height: 80,
-                width: 160,
-              ),
-              Text(
-                "Supervised by Mohamed NabiL",
-                style: TextStyle(
-                  color: Color(0xFFB7935F),
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                  decoration: TextDecoration.none,
+    var provider = Provider.of<MyProvider>(context);
+    return Stack(children: [
+      Image.asset(
+        provider.isDark ? "assets/images/bg.png" : "assets/images/bg2.png",
+        fit: BoxFit.fill,
+        width: double.infinity,
+      ),
+      FlutterSplashScreen(
+        duration: Duration(seconds: 2),
+        nextScreen: Homescreen(),
+        backgroundColor: Colors.transparent,
+        splashScreenBody: Container(
+          color: Colors.transparent,
+          child: Center(
+            child: Column(
+              children: [
+                Spacer(
+                  flex: 3,
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-            ],
+                provider.isDark
+                    ? Image.asset("assets/images/logo.png")
+                    : Image.asset("assets/images/logo2.png"),
+                Spacer(
+                  flex: 2,
+                ),
+                provider.isDark
+                    ? Image.asset(
+                        "assets/images/Group 7.png",
+                        fit: BoxFit.fitWidth,
+                        height: 120,
+                        width: 200,
+                      )
+                    : Image.asset(
+                        "assets/images/Group 7 L.png",
+                        fit: BoxFit.fitWidth,
+                        height: 120,
+                        width: 200,
+                      ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
           ),
         ),
       ),
-    );
+    ]);
   }
 }

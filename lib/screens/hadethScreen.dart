@@ -1,7 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islamic_app/myProviders/myProvider.dart';
+import 'package:islamic_app/myThemeData.dart';
 import 'package:islamic_app/screens/hadethDeteailedScreen.dart';
 import 'package:islamic_app/model/hadethModel.dart';
+import 'package:provider/provider.dart';
 
 class HadethScreen extends StatefulWidget {
   @override
@@ -10,9 +14,63 @@ class HadethScreen extends StatefulWidget {
 
 class _HadethScreenState extends State<HadethScreen> {
   List<HadethModel> ahadeths = [];
+  List<String> hadethList = [
+    "First Hadeth",
+    "Second Hadeth",
+    "Third Hadeth",
+    "Fourth Hadeth",
+    "Fifth Hadeth",
+    "Sixth Hadeth",
+    "Seventh Hadeth",
+    "Eighth Hadeth",
+    "Ninth Hadeth",
+    "Tenth Hadeth",
+    "Eleventh Hadeth",
+    "Twelfth Hadeth",
+    "Thirteenth Hadeth",
+    "Fourteenth Hadeth",
+    "Fifteenth Hadeth",
+    "Sixteenth Hadeth",
+    "Seventeenth Hadeth",
+    "Eighteenth Hadeth",
+    "Nineteenth Hadeth",
+    "Twentieth Hadeth",
+    "Twenty-First Hadeth",
+    "Twenty-Second Hadeth",
+    "Twenty-Third Hadeth",
+    "Twenty-Fourth Hadeth",
+    "Twenty-Fifth Hadeth",
+    "Twenty-Sixth Hadeth",
+    "Twenty-Seventh Hadeth",
+    "Twenty-Eighth Hadeth",
+    "Twenty-Ninth Hadeth",
+    "Thirtieth Hadeth",
+    "Thirty-First Hadeth",
+    "Thirty-Second Hadeth",
+    "Thirty-Third Hadeth",
+    "Thirty-Fourth Hadeth",
+    "Thirty-Fifth Hadeth",
+    "Thirty-Sixth Hadeth",
+    "Thirty-Seventh Hadeth",
+    "Thirty-Eighth Hadeth",
+    "Thirty-Ninth Hadeth",
+    "Fortieth Hadeth",
+    "Forty-First Hadeth",
+    "Forty-Second Hadeth",
+    "Forty-Third Hadeth",
+    "Forty-Fourth Hadeth",
+    "Forty-Fifth Hadeth",
+    "Forty-Sixth Hadeth",
+    "Forty-Seventh Hadeth",
+    "Forty-Eighth Hadeth",
+    "Forty-Ninth Hadeth",
+    "Fiftieth Hadeth"
+  ];
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
+
     if (ahadeths.isEmpty) {
       loadhadeths();
     }
@@ -24,22 +82,28 @@ class _HadethScreenState extends State<HadethScreen> {
             border: TableBorder(
                 top: BorderSide(
                   width: 3,
-                  color: Color(0xFFB7935F),
+                  color: provider.isDark
+                      ? MyThemeData.DarkprimaryColor
+                      : MyThemeData.primaryColor,
                 ),
                 bottom: BorderSide(
                   width: 3,
-                  color: Color(0xFFB7935F),
+                  color: provider.isDark
+                      ? MyThemeData.DarkprimaryColor
+                      : MyThemeData.primaryColor,
                 ),
                 verticalInside: BorderSide(
                   width: 3,
-                  color: Color(0xFFB7935F),
+                  color: provider.isDark
+                      ? MyThemeData.DarkprimaryColor
+                      : MyThemeData.primaryColor,
                 )),
             children: [
               TableRow(children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
-                    "الأحاديث",
+                    "ahadeth".tr(),
                     style: Theme.of(context).textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
@@ -51,7 +115,9 @@ class _HadethScreenState extends State<HadethScreen> {
             child: ListView.separated(
               separatorBuilder: (context, index) {
                 return Divider(
-                  color: Color(0xFFB7935F),
+                  color: provider.isDark
+                      ? MyThemeData.DarkprimaryColor
+                      : MyThemeData.primaryColor,
                   indent: 50,
                   endIndent: 50,
                 );
@@ -65,19 +131,21 @@ class _HadethScreenState extends State<HadethScreen> {
                         arguments: ahadeths[index]);
                   },
                   child: Table(
-                    border: TableBorder.symmetric(
-                      inside: BorderSide(
-                        color: Color(0xFFB7935F),
-                        width: 3,
-                      ),
-                    ),
+                    // border: TableBorder.symmetric(
+                    //   inside: BorderSide(
+                    //     color: MyThemeData.DarkprimaryColor,
+                    //     width: 3,
+                    //   ),
+                    // ),
                     children: [
                       TableRow(
                         children: [
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 8.0),
                             child: Text(
-                              ahadeths[index].title,
+                              provider.isEnglish
+                                  ? hadethList[index]
+                                  : ahadeths[index].title,
                               style: Theme.of(context).textTheme.bodyLarge,
                               textAlign: TextAlign.center,
                             ),

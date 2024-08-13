@@ -30,20 +30,27 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   another_flutter_splash_screen: ^1.2.1
   google_fonts: ^6.2.1
+  easy_localization: ^3.0.7
+  provider: ^6.1.2
 
 
-
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo2.png"
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -59,6 +66,7 @@ flutter:
   assets:
     - assets/images/
     - assets/files/
+    - assets/lang/
     - assets/ahadeth.txt
     # - assets/ahadeth/
   # The following line ensures that the Material Icons font is
