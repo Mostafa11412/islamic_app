@@ -46,13 +46,13 @@ class _HomescreenState extends State<Homescreen> {
                     value: provider.isEnglish,
                     activeColor: provider.isDark ? Colors.white : Colors.black,
                     onChanged: (value) {
-                      setState(() {
+             
                         provider.isEnglish
                             ? context.setLocale(Locale('ar'))
                             : context.setLocale(Locale('en'));
 
                         provider.changeLanguage(value);
-                      });
+                
                     }),
               )
             ],
@@ -66,9 +66,9 @@ class _HomescreenState extends State<Homescreen> {
                   value: provider.isDark,
                   activeColor: provider.isDark ? Colors.white : Colors.black,
                   onChanged: (value) {
-                    setState(() {
+   
                       provider.changeTheme(value);
-                    });
+                 
                   }),
             )
           ],
@@ -78,7 +78,7 @@ class _HomescreenState extends State<Homescreen> {
             currentIndex: index,
             onTap: (value) {
               index = value;
-              setState(() {});
+       
             },
             items: [
               BottomNavigationBarItem(
